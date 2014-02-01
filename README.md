@@ -46,7 +46,7 @@ I have only tested it on Ubuntu, so if you succeeded on others platforms, I will
 ```
 	npm install twit
 ```
-* Get TextDuino on your computer :  
+* Get Impact on your computer :  
 ```
 	git clone https://github.com/triskell/Impact.git
 ```
@@ -55,6 +55,6 @@ I have only tested it on Ubuntu, so if you succeeded on others platforms, I will
 * Launch the NodeJS part :   
 ```
 	cd src/impact-node/ 
-	node textduinode.js
+	node impact_node.js
 ```	
 * Have fun !
