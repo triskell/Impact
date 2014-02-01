@@ -22,17 +22,16 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-require('./config');
+var cfg = require('./config');
 var SerialPort = require("node-serialport").SerialPort;
 var Twit = require('twit');
 
-
 //launch Twitter connection
 var T = new Twit({
-    consumer_key,
-    consumer_secret,
-    access_token,
-    access_token_secret 
+    consumer_key: cfg.consumer_key ,
+    consumer_secret: cfg.consumer_secret ,
+    access_token: cfg.access_token ,
+    access_token_secret: cfg.access_token_secret 
   });
 console.log('[INFO] Twitter variables initialized.');
 
@@ -46,7 +45,7 @@ serialHandler();
 function serialHandler()
 {
     var receivedData = "";
-    serialPort = new SerialPort(serial_port, {
+    serialPort = new SerialPort(cfg.serial_port, {
         //Set up the default serial communication for Arduino :
         //(Read node-serialport documentation to modify)
         baudrate: 9600,
@@ -57,7 +56,7 @@ function serialHandler()
     });
  
     serialPort.on("open", function () {
-      console.log('[INFO] Serial connection started on port : ' + serial_port);
+      console.log('[INFO] Serial connection started on port : ' + cfg.serial_port);
         serialPort.on('data', function(data) {
             receivedData += data.toString();
             /*
@@ -67,7 +66,7 @@ function serialHandler()
           	if (receivedData.indexOf('{') >= 0 && receivedData.indexOf('}') >= 0) {
            		exctractData = receivedData.substring(receivedData.indexOf('{') + 1, receivedData.indexOf('}'));
            		receivedData = '';
-           		console.log('[DEBUG] Extracted data :' + exctractData);
+           		console.log('[DEBUG] Extracted data : ' + exctractData);
            		sendTweet(exctractData);
          	}
       	});  
@@ -82,7 +81,7 @@ function sendTweet(message)
       console.log('[INFO] Tweet sent successfully :\n' + message);
     }
     else {
-      console.log('[ERR] Could not send Tweet, error : ' + error);
+      console.log('[ERR] Could not send Tweet. ' + err);
     }
   })
 }

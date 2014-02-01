@@ -23,7 +23,7 @@ SOFTWARE.
 */
 
 module.exports = {
-	serial_port: '/dev/ttyACM1',
+	serial_port: '/dev/ttyACM0',
     consumer_key: '...',
     consumer_secret: '...',
     access_token: '...',
